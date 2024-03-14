@@ -10,8 +10,7 @@ export const createTask = async (req, res) => {
 
     const newTask = new Task({
         title,
-        description,
-        date
+        description
     })
     const savedTask = await newTask.save()
     res.json(savedTask)

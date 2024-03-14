@@ -13,5 +13,4 @@ export const createtaskValidations = z.object({
     .min(10, {
         message: 'La descripción debe tener al menos 10 caracteres'
     }),
-    date: z.string().datetime()
 })
