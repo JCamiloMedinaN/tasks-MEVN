@@ -6,8 +6,9 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000"],
+  origin: ["http://localhost:5173"],
   credentials: true,
+  allowedHeaders: ["Origin", "Content-Type", "Authorization"]
 }));
 
 app.use(morgan("tiny"));
