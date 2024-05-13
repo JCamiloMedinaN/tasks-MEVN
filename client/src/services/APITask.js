@@ -1,6 +1,8 @@
 import { getAllTasks } from './GetAllTasks'
 import { getTaskById } from './GetTask'
 import { createTask } from './PostTask'
+import { updateTask } from './UpdateTask';
+import { deleteTask } from './DeleteTask'
 
 class APITask {
   constructor() {}
@@ -17,13 +19,13 @@ class APITask {
     return createTask(task);
   }
 
-//   async updateTask(id, task) {
-//     return updateTask(id, task);
-//   }
+  async updateTask(id, task) {
+    return updateTask(id, task);
+  }
 
-//   async deleteTask(id) {
-//     return deleteTask(id);
-//   }
+  async deleteTask(id) {
+    return deleteTask(id);
+  }
 }
 
 export default APITask;

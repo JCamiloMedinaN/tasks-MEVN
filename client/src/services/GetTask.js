@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function getTaskById (){
+export async function getTaskById (id){
     try {
         const api = axios.create({
             baseURL: 'http://localhost:3000/api/tasks',
