@@ -105,6 +105,7 @@ ul {
 }
 
 .card {
+  max-width: 30rem;
   list-style: none;
   background-color: #1b2132;
   border-radius: 1rem;

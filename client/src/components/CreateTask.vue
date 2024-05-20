@@ -54,7 +54,6 @@ const handleSubmit = async () => {
 <style scoped>
 .card {
   padding: 1rem;
-
   background-color: #1b2132;
   border-radius: 1rem;
   display: flex;
@@ -63,6 +62,9 @@ const handleSubmit = async () => {
 
 h1 {
   text-align: center;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  color: white;
 }
 
 .input-title {

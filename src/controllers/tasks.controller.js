@@ -33,3 +33,19 @@ export const deleteTask = async (req, res) => {
     if (!task) return res.status(404).json({ message: 'Tarea no encontrada' })
     return res.sendStatus(204)
 }
+
+export const searchTasks = async (req, res) => {
+    const { query } = req.query;
+    if (!query) {
+        return res.status(400).json({ message: 'Debe proporcionar una consulta de búsqueda' });
+    }
+
+    const tasks = await Task.find({
+        $or: [
+            { title: { $regex: query, $options: 'i' } },
+            { description: { $regex: query, $options: 'i' } }
+        ]
+    });
+
+    res.json(tasks);
+}

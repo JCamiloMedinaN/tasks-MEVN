@@ -3,12 +3,17 @@ import { getTaskById } from './GetTask'
 import { createTask } from './PostTask'
 import { updateTask } from './UpdateTask';
 import { deleteTask } from './DeleteTask'
+import { searchTasks} from './SearchTask'
 
 class APITask {
   constructor() {}
 
   async getAllTasks() {
     return getAllTasks();
+  }
+
+  async searchTasks(query){
+    return searchTasks(query)
   }
 
   async getTaskById(id) {

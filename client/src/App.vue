@@ -17,6 +17,7 @@ export default {
 <style scoped>
 .container-tasks {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 }
