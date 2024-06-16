@@ -1,26 +1,59 @@
 <template>
-  <div class="card">
-    <h1>Crear Tarea</h1>
-    <input
-      class="input-title"
-      type="text"
-      placeholder="Titulo"
-      v-model="title"
-    />
-    <input
-      class="input-description"
-      type="text"
-      placeholder="Descripción"
-      v-model="description"
-    />
-    <div class="btn">
-      <button class="btn-submit" @click="handleSubmit">Crear</button>
+  <div class="container">
+    <div class="card w-96">
+      <h1>Crear Tarea</h1>
+      <Form @submit="handleSubmit">
+        <div class="flex-col">
+          <Field
+            name="title"
+            type="text"
+            :rules="validateTitle"
+            v-slot="{ field, errors }"
+          >
+            <div>
+              <input
+              v-bind="field"
+              class="input-title"
+              placeholder="Titulo"
+            />
+            </div>
+            <div>
+              <ErrorMessage name="title" class="validation"/>
+            </div>
+          </Field>
+        </div>
+
+        <div class="flex-col">
+          <Field
+            name="description"
+            type="text"
+            :rules="validateDescription"
+            v-slot="{ field, errors }"
+          >
+            <div>
+              <input
+                v-bind="field"
+                class="input-description"
+                placeholder="Descripción"
+              />
+            </div>
+            <div>
+              <ErrorMessage name="description" class="validation" />
+            </div>
+          </Field>
+        </div>
+
+        <div class="btn">
+          <button class="btn-submit" type="submit">Crear</button>
+        </div>
+      </Form>
     </div>
   </div>
 </template>
 
 /TODO: vee validate, para validaciones de formularios en Vue
 <script setup>
+import { Form, Field, ErrorMessage } from "vee-validate";
 import { ref } from "vue";
 import TaskAPI from "../services/APITask";
 
@@ -30,6 +63,26 @@ let description = ref("");
 const taskAPI = new TaskAPI();
 
 const emit = defineEmits(["getTasks"]);
+
+const validateTitle = (value) => {
+  if (!value) {
+    return "El título es requerido";
+  }
+  if (value.length < 1) {
+    return "El título debe tener al menos 1 caracter";
+  }
+  return true;
+};
+
+const validateDescription = (value) => {
+  if (!value) {
+    return "La descripción es requerida";
+  }
+  if (value.length < 10) {
+    return "La descripción debe tener al menos 10 caracteres";
+  }
+  return true;
+};
 
 const handleSubmit = async () => {
   const task = {
@@ -51,7 +104,12 @@ const handleSubmit = async () => {
   }
 };
 </script>
+
 <style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+}
 .card {
   padding: 1rem;
   background-color: #1b2132;
@@ -76,6 +134,7 @@ h1 {
   outline: none;
   border: none;
   word-wrap: break-word;
+  width: 100%;
 }
 
 .input-description {
@@ -87,6 +146,7 @@ h1 {
   border: none;
   word-wrap: break-word;
   white-space: pre-wrap;
+  width: 100%;
 }
 
 .btn {
@@ -106,5 +166,12 @@ h1 {
   font-weight: bolder;
   font-size: medium;
   cursor: pointer;
+}
+.btn-submit:hover {
+  background-color: #df6942;
+}
+
+.validation {
+  color: #ff9b7b;
 }
 </style>

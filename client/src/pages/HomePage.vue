@@ -1,10 +1,10 @@
 <template>
-  <div class="container-tasks">
+  <div class="container-tasks content-center">
     <CreateTask @getTasks="getAllTasks" />
 
-    <div class="input-search">
+    <div class="input-search mt-9">
       <input
-        class="searh"
+        class="searh w-60"
         v-model="searchQuery"
         @input="searchTasks"
         placeholder="Buscar tareas..."
@@ -63,6 +63,9 @@ const handleTaskSave = () => {
 .input-search {
   display: flex;
   justify-content: center;
+}
+::placeholder{
+  color: rgb(58, 57, 57);
 }
 
 input {

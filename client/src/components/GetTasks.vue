@@ -1,7 +1,7 @@
 <template>
   <div class="taskslist">
     <ul>
-      <li class="card" v-for="task in tasks" :key="task._id">
+      <li class="card w-96" v-for="task in tasks" :key="task._id">
         <div class="input-card">
           <h3 v-if="!task.editing">{{ task.title }}</h3>
           <input
@@ -105,7 +105,6 @@ ul {
 }
 
 .card {
-  max-width: 30rem;
   list-style: none;
   background-color: #1b2132;
   border-radius: 1rem;
